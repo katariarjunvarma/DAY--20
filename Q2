@@ -1,0 +1,58 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    int n, m;
+
+    // Taking input for dimensions of the matrix
+    cout << "Enter the number of rows (n): ";
+    cin >> n;
+    cout << "Enter the number of columns (m): ";
+    cin >> m;
+
+    // Defining the matrix with size n x m
+    int array[n][m];
+
+    // Taking input for matrix elements
+    cout << "Enter the elements of the " << n << "x" << m << " matrix:" << endl;
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < m; ++j) {
+            cin >> array[i][j];
+        }
+    }
+
+    // Flattening the 2D array into a 1D array for sorting
+    int size = n * m;
+    int flatArray[size];
+    
+    // Copying the elements of the 2D array to the 1D array
+    int index = 0;
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < m; ++j) {
+            flatArray[index++] = array[i][j];
+        }
+    }
+
+    // Sorting the 1D array
+    sort(flatArray, flatArray + size);
+
+    // Copying the sorted 1D array elements back into the 2D array
+    index = 0;
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < m; ++j) {
+            array[i][j] = flatArray[index++];
+        }
+    }
+
+    // Printing the sorted 2D array
+    cout << "Sorted matrix:" << endl;
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < m; ++j) {
+            cout << array[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
